@@ -142,6 +142,11 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid authentication credentials")
 
+# Basic endpoints
+@api_router.get("/")
+async def root():
+    return {"message": "Job Portal API is running"}
+
 # Authentication endpoints
 @api_router.post("/register")
 async def register(user_data: UserCreate):
